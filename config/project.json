@@ -1,0 +1,15 @@
+{
+"dev":
+	{
+	"datahostname" : "'mydev.local'"
+	},
+"stage":
+	{
+	"datahostname" : "'ic.adfab.fr'"
+	},
+"prod":
+	{
+	"datahostname" : "'prod.domain.fr'"
+	}
+
+}

@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-cli": "*",
+    "grunt-contrib-watch": "*",
+    "matchdep": "*",
+    "grunt-contrib-less": "*",
+    "grunt-cordovacli": "^0.3.4",
+    "grunt-exec": "^0.4.5",
+    "ios-sim": "^1.9.0",
+    "plist": "git+https://github.com/TooTallNate/plist.js.git"
+  }
+}
