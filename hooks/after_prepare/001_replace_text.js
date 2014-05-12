@@ -40,7 +40,7 @@ if (rootdir) {
         if (fs.existsSync(fullfilename)) {
             // CONFIGURE HERE
             // with the names of the token values. For example, below we are looking for the token /*REP*/ 'api.example.com' /*REP*/ and will replace that token
-            replace_string_in_file(fullfilename, "/\\*REP\\*/ 'api.example.com' /\\*REP\\*/", configobj[target].datahostname);
+            replace_string_in_file(fullfilename, "/\\*REP\\*/ 'api.example.com' /\\*REP\\*/", configobj['environment'][target].datahostname);
             // ... any other configuration
         } else {
             //console.log("missing: "+fullfilename);

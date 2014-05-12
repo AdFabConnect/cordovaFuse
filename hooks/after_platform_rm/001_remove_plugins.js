@@ -17,11 +17,11 @@ if (rootdir) {
     function puts(error, stdout, stderr) {
         sys.puts(stdout)
     }
-
+    
     plugins.forEach(function(plugin){
         for (var prop in plugin) {
             //console.log(prop + " is " + plugin[prop]);
-            exec("cordova plugin add " + plugin[prop], puts);
+            exec("cordova plugin rm " + prop, puts);
          }
     });
 }

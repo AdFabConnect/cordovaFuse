@@ -1,15 +1,22 @@
 {
-"dev":
-	{
-	"datahostname" : "'mydev.local'"
+	"environment": {
+		"dev": {
+			"datahostname" : "'mydev.local'"
+		},
+		"stage": {
+			"datahostname" : "'ic.adfab.fr'"
+		},
+		"prod": {
+			"datahostname" : "'prod.domain.fr'"
+		}
 	},
-"stage":
-	{
-	"datahostname" : "'ic.adfab.fr'"
-	},
-"prod":
-	{
-	"datahostname" : "'prod.domain.fr'"
-	}
-
+	
+	"plugins": [
+  		{"fr.adfab.simbalphonegap": "../simbalphonegap/plugins/fr.adfab.simbalphonegap-1.3.4"},
+    	{"fr.adfab.Volumedetectionphonegap": "../simbalphonegap/plugins/fr.adfab.volumedetectionphonegap"},
+    	{"org.apache.cordova.plugins.inappbrowser": "https://github.com/AdFabConnect/cordova-inappbrowser-ce.git"},
+    	{"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
+    	{"org.co.ilee.socialmessage": "https://github.com/leecrossley/cordova-plugin-social-message.git"},
+    	{"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
+	]
 }
