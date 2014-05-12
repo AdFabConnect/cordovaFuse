@@ -16,10 +16,17 @@ Enjoy !
 
 You need node and npm installed on your system (but we assume you have it since you're working with Cordova which has the same pre-requisite)
 
+## Installation
+
+Don't forget to give execute rights to your hooks (chown and chmod).
+
+Once instaled on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
 # Cordova Hooks
 ## 1. Plugins installation
-If you need to install plugins, we propose you a "after_add_platform" hook. Just fill in the array of the plugins you want to install in 001_install_plugins.js and 
-they will be install when you add your plaform with cordova (cordova platform add)
+If you need to install plugins, we propose you a "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/project.json and 
+they will be install when you add your plaform with cordova (cordova platform add).
+
+They will be removed when you rm your platform with cordova (cordova platform rm).
 
 ## 2. Manage your environments
 This hook is an "after_prepare" hook.
