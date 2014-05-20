@@ -17,7 +17,7 @@ var fs = require('fs');
 var path = require('path');
 var plist = require('plist');
 
-var appName = "OeilDeLinks";
+var settings = require('../../config/settings.js');
 
 // no need to configure below
 var rootdir = process.argv[2];
@@ -27,14 +27,14 @@ var platformConfigs = fs.readdirSync(rootdir+"/config");
 
 platformConfigs.forEach(function(platformName) {
     // ignore files and copy directories contents
-    if(platformName[0] != "." && fs.lstatSync(rootdir+"/config/"+platformName).isDirectory()) {
+    if(platformName != 'icon-resize' && platformName[0] != "." && fs.lstatSync(rootdir+"/config/"+platformName).isDirectory()) {
         // look copy all files from this config/Resources folds into the appropriate
         // platform
         var resourcePath = path.join(rootdir+"/config", platformName+"/resources");
         fs.readdirSync(resourcePath).forEach(function(resourceType){
             
             if(resourceType == 'Fonts'){
-                var plistFile = rootdir+"/platforms/"+platformName+"/"+appName+"/"+appName+"-Info.plist";
+                var plistFile = rootdir+"/platforms/"+platformName+"/"+settings.appName+"/"+settings.appName+"-Info.plist";
                 var obj = plist.parse(fs.readFileSync(plistFile, "utf8"));
                 obj['Fonts provided by application'] = [];
 
@@ -44,8 +44,8 @@ platformConfigs.forEach(function(platformName) {
                     fs.readdirSync(resourceTypePath).forEach(function(fileName){
                         var srcfile = path.join(resourceTypePath, fileName);
                         // determine destination location
-                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+appName+"/Resources/"+resourceType);
-                        var destLocation = "platforms/"+platformName+"/"+appName+"/Resources/"+resourceType+"/"+fileName;
+                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
+                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
                         var destfile = path.join(rootdir, destLocation);
     
                         if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);

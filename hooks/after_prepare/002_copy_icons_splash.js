@@ -16,44 +16,56 @@
 var fs = require('fs');
 var path = require('path');
 var plist = require('plist');
-
-var appName = "OeilDeLinks";
-
-// no need to configure below
+var grunt = require('grunt');
+var settings = require('../../config/settings.js');
+//no need to configure below
 var rootdir = process.argv[2];
+var iconResizeConfigFolder = rootdir+'/config/icon-resize/';
+var resize = require('mobile-icon-resizer');
+var options = {
+	originalIconFilename: iconResizeConfigFolder+'icon.png',
+	config : iconResizeConfigFolder+'icon-resize-config.js',
+	platformsToBuild: ['ios'],
+	iosOutputFolder: rootdir+'/config/ios/resources/icons'
+};
 
-// loop through all files in the config directory
-var platformConfigs = fs.readdirSync(rootdir+"/config");
-
-platformConfigs.forEach(function(platformName) {
-    // ignore files and copy directories contents
-    if(platformName[0] != "." && fs.lstatSync(rootdir+"/config/"+platformName).isDirectory()) {
-        // look copy all files from this config/Resources folds into the appropriate
-        // platform
-        var resourcePath = path.join(rootdir+"/config", platformName+"/resources");
-        fs.readdirSync(resourcePath).forEach(function(resourceType){
-            
-            if(resourceType == 'icons' || resourceType == 'splash'){
-                // again ignore hidden files
-                if(resourceType[0] != ".") {
-                    var resourceTypePath = path.join(resourcePath, resourceType);
-                    fs.readdirSync(resourceTypePath).forEach(function(fileName){
-                        var srcfile = path.join(resourceTypePath, fileName);
-                        // determine destination location
-                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+appName+"/Resources/"+resourceType);
-                        var destLocation = "platforms/"+platformName+"/"+appName+"/Resources/"+resourceType+"/"+fileName;
-                        var destfile = path.join(rootdir, destLocation);
-    
-                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
-                        // console.log("copying "+srcfile+" to "+destfile);
-    
-                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
-                        if (fs.existsSync(srcfile)) {
-                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
-                        }
-                    });
-                }
-            }
-        });
-    }
+resize(options, function (err) {
+	if(err != null){
+		console.log(err);
+	}
+	// loop through all files in the config directory
+	var platformConfigs = fs.readdirSync(rootdir+"/config");
+	platformConfigs.forEach(function(platformName) {
+	    // ignore files and copy directories contents
+	    if(platformName != 'icon-resize' && platformName[0] != "." && fs.lstatSync(rootdir+"/config/"+platformName).isDirectory()) {
+	        // look copy all files from this config/Resources folds into the appropriate
+	        // platform
+	        var resourcePath = path.join(rootdir+"/config", platformName+"/resources");
+	        
+	        fs.readdirSync(resourcePath).forEach(function(resourceType){
+	        	
+	            if(resourceType == 'icons' || resourceType == 'splash'){
+	                // again ignore hidden files
+	                if(resourceType[0] != ".") {
+	                    var resourceTypePath = path.join(resourcePath, resourceType);
+	                    fs.readdirSync(resourceTypePath).forEach(function(fileName){
+	                        var srcfile = path.join(resourceTypePath, fileName);
+	                        // determine destination location
+	                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
+	                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
+	                        var destfile = path.join(rootdir, destLocation);
+	    
+	                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
+	                        // console.log("copying "+srcfile+" to "+destfile);
+	    
+	                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
+	                        if (fs.existsSync(srcfile)) {
+	                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+	                        }
+	                    });
+	                }
+	            }
+	        });
+	    }
+	});
 });

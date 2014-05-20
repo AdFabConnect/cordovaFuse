@@ -8,6 +8,7 @@
     "grunt-cordovacli": "^0.3.4",
     "grunt-exec": "^0.4.5",
     "ios-sim": "^1.9.0",
-    "plist": "git+https://github.com/TooTallNate/plist.js.git"
+    "plist": "git+https://github.com/TooTallNate/plist.js.git",
+    "mobile-icon-resizer":"*"
   }
 }
