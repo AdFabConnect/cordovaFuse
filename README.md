@@ -15,6 +15,7 @@ Enjoy !
 ##Pre-requisites
 
 You need node and npm installed on your system (but we assume you have it since you're working with Cordova which has the same pre-requisite)
+Otherwise, you will need to have ImageMagick installed on your computer, [mobile-icon-resizer](https://github.com/muzzley/mobile-icon-resizer) use it to convert icon to different size
 
 ## Installation
 
@@ -40,6 +41,8 @@ I've revisited the script from Dan becasue I wanted all the icons and splash scr
 
 The principle is simple : Create a config directory (root of your project) in which you'll create the platform directories and a subdirectory "icons" and another "splash".
 Once done, every time you prepare your project (cordova prepare), theses directories will be put in your platforms !
+
+on the icon-resize folder inside of the config folder, put your icon.png. then everytime the prepare command is executed, this icon (which can be as big / high quality / size as you can) will get converted to the one used in xcode and put inside of /config/ios/resources/icons folder. To change the name of the icon created using mobile-icon-resizer you have to edit this config file [icon-resize-config.js](https://github.com/AdFabConnect/cordovaFuse/blob/master/config/icon-resize/icon-resize-config.js)
 
 ## 4. Install Fonts in iOS
 This hook is an "after_prepare" hook.
