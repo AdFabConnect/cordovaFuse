@@ -23,10 +23,19 @@ Don't forget to give execute rights to your hooks (chown and chmod).
 Once instaled on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
 # Cordova Hooks
 ## 1. Plugins installation
-If you need to install plugins, we propose you a "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/project.json and 
+If you need to install plugins, we propose you a "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
 they will be install when you add your plaform with cordova (cordova platform add).
 
 They will be removed when you rm your platform with cordova (cordova platform rm).
+
+Example :
+```
+	plugins: [
+    	{"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
+    	{"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
+	],
+```
+
 
 ## 2. Manage your environments
 This hook is an "after_prepare" hook.
@@ -50,6 +59,31 @@ And this hook will make everything for you : Just create a "Fonts" directory in 
 Each time you'll prepare your project (cordova prepare), these fonts will be copied in your ios Resources directory and the plist file will be updated.
 
 Don't forget to use the right names (read Mika's article) in your css. That's it !
+
+## 5. Add custom config into xcode .plist file
+This hook is an "after_prepare" hook.
+You need to add all the custom config into config/settings.js
+
+Example :
+```
+	plist: {
+		"UISupportedInterfaceOrientations": [
+			"UIInterfaceOrientationPortrait",
+			"UIInterfaceOrientationLandscapeLeft",
+			"UIInterfaceOrientationPortraitUpsideDown",
+			"UIInterfaceOrientationLandscapeRight"
+		],
+		"UISupportedInterfaceOrientations~ipad": [
+  			"UIInterfaceOrientationPortrait",
+			"UIInterfaceOrientationLandscapeLeft",
+			"UIInterfaceOrientationPortraitUpsideDown",
+			"UIInterfaceOrientationLandscapeRight"
+		],
+		"UIStatusBarStyle": "UIStatusBarStyleLightContent",
+		"UIViewControllerBasedStatusBarAppearance": false,
+		"UIStatusBarHidden": true
+}
+```
 
 # Grunt tasks
 There is one headache you'll want to avoid when working on a Cordova project : Having to launch "Cordova build" each time you want to update your project.
