@@ -29,7 +29,8 @@ var settings = {
 			"UIInterfaceOrientationLandscapeRight"
 		],
 		"UIStatusBarStyle": "UIStatusBarStyleLightContent",
-		"UIViewControllerBasedStatusBarAppearance": false
+		"UIViewControllerBasedStatusBarAppearance": false,
+		"UIStatusBarHidden": true
 	}
 };
 
