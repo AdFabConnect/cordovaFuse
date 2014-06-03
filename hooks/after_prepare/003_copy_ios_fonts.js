@@ -42,22 +42,24 @@ platformConfigs.forEach(function(platformName) {
                 if(resourceType[0] != ".") {
                     var resourceTypePath = path.join(resourcePath, resourceType);
                     fs.readdirSync(resourceTypePath).forEach(function(fileName){
-                        var srcfile = path.join(resourceTypePath, fileName);
-                        // determine destination location
-                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
-                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
-                        var destfile = path.join(rootdir, destLocation);
-    
-                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
-                        // console.log("copying "+srcfile+" to "+destfile);
-    
-                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
-                        if (fs.existsSync(srcfile)) {
-                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
-                        }
-
-                        obj['Fonts provided by application'].push(resourceType+"/"+fileName);
-
+                    	
+                    	if(fileName[0] != ".") {
+	                        var srcfile = path.join(resourceTypePath, fileName);
+	                        // determine destination location
+	                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
+	                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
+	                        var destfile = path.join(rootdir, destLocation);
+	    
+	                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
+	                        // console.log("copying "+srcfile+" to "+destfile);
+	    
+	                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
+	                        if (fs.existsSync(srcfile)) {
+	                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+	                        }
+	
+	                        obj['Fonts provided by application'].push(resourceType+"/"+fileName);
+                    	}
                     });
                 }
 
