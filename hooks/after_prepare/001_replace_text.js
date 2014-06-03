@@ -24,8 +24,10 @@ if (process.env.TARGET) {
 }
 
 if (rootdir) {
-    var ourconfigfile = path.join(rootdir, "config", "project.json");
-    var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
+    var settings = require('../../config/settings.js');
+
+    //var ourconfigfile = path.join(rootdir, "config", "project.json");
+    //var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
 
     // CONFIGURE HERE
     // with the names of the files that contain tokens you want replaced.  Replace files that have been copied via the prepare step.
@@ -40,7 +42,7 @@ if (rootdir) {
         if (fs.existsSync(fullfilename)) {
             // CONFIGURE HERE
             // with the names of the token values. For example, below we are looking for the token /*REP*/ 'api.example.com' /*REP*/ and will replace that token
-            replace_string_in_file(fullfilename, "/\\*REP\\*/ 'api.example.com' /\\*REP\\*/", configobj['environment'][target].datahostname);
+            replace_string_in_file(fullfilename, "/\\*REP\\*/ 'api.example.com' /\\*REP\\*/", settings.environment[target].datahostname);
             // ... any other configuration
         } else {
             //console.log("missing: "+fullfilename);

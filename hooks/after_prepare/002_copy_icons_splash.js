@@ -31,13 +31,14 @@ var options = {
 
 resize(options, function (err) {
 	if(err != null){
-		console.log(err);
+		console.log('ERROR : ' + err);
 	}
 	// loop through all files in the config directory
 	var platformConfigs = fs.readdirSync(rootdir+"/config");
 	platformConfigs.forEach(function(platformName) {
 	    // ignore files and copy directories contents
 	    if(platformName != 'icon-resize' && platformName[0] != "." && fs.lstatSync(rootdir+"/config/"+platformName).isDirectory()) {
+	    	console.log('platformName ' + platformName);
 	        // look copy all files from this config/Resources folds into the appropriate
 	        // platform
 	        var resourcePath = path.join(rootdir+"/config", platformName+"/resources");
@@ -48,19 +49,23 @@ resize(options, function (err) {
 	                // again ignore hidden files
 	                if(resourceType[0] != ".") {
 	                    var resourceTypePath = path.join(resourcePath, resourceType);
+
 	                    fs.readdirSync(resourceTypePath).forEach(function(fileName){
-	                        var srcfile = path.join(resourceTypePath, fileName);
-	                        // determine destination location
-	                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
-	                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
-	                        var destfile = path.join(rootdir, destLocation);
-	    
-	                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
-	                        // console.log("copying "+srcfile+" to "+destfile);
-	    
-	                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
-	                        if (fs.existsSync(srcfile)) {
-	                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+
+	                    	if(fileName.indexOf('.png') > -1) {
+		                        var srcfile = path.join(resourceTypePath, fileName);
+		                        // determine destination location
+		                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
+		                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
+		                        var destfile = path.join(rootdir, destLocation);
+		    
+		                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
+		                        // console.log("copying "+srcfile+" to "+destfile);
+		    
+		                        //if (fs.existsSync(srcfile) && fs.existsSync(destfile)) {
+		                        if (fs.existsSync(srcfile)) {
+		                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+		                        }
 	                        }
 	                    });
 	                }
