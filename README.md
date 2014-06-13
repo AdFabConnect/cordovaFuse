@@ -20,6 +20,13 @@ You need node and npm installed on your system (but we assume you have it since 
 
 Don't forget to give execute rights to your hooks (chown and chmod).
 
+Open file config/settings.js and change variable appName :
+```
+var settings = {
+	appName: 'myapp',
+```
+! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
+
 Once instaled on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
 # Cordova Hooks
 ## 1. Plugins installation
