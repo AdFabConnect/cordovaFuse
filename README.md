@@ -8,9 +8,12 @@ The goal of this project is to increase your productivity when you develop phone
 Some of these dev have been directly taken from the Holly Schinsky excellent article (http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/) and 
 Dan Moore (http://www.mooreds.com/) (whose THE creator of some of these scripts).
 
-Some of these scripts have been written by me.
+Some of these scripts have been written by us.
 
-Enjoy !
+Furthermore, we'll update this Fuse frequently with astounding new features. 
+The next to come : Being able to update your js files dynamically from the cloud (You won't have to resubmit your app for a js bug fix !)
+
+Saty tuned and enjoy !
 
 ##Pre-requisites
 
@@ -102,5 +105,5 @@ Of course, it doesn't replace the wonderful Phonegap developer app (http://devgi
 
 Enjoy !
 
-If you need additional tools to improve your dev process with cordova, just let me know, I'll try to help ;) (you can also send PR !)
+If you need additional tools to improve your dev process with cordova, just let us know, We'll try to help ;) (you can also send PR !)
 
