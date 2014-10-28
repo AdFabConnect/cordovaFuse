@@ -13,7 +13,7 @@ Some of these scripts have been written by us.
 Furthermore, we'll update this Fuse frequently with astounding new features. 
 The next to come : Being able to update your js files dynamically from the cloud (You won't have to resubmit your app for a js bug fix !)
 
-Saty tuned and enjoy !
+Stay tuned and enjoy !
 
 ##Pre-requisites
 
@@ -30,10 +30,10 @@ var settings = {
 ```
 ! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
-Once instaled on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
+Once installed on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
 # Cordova Hooks
 ## 1. Plugins installation
-If you need to install plugins, we propose you a "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
+If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
 they will be install when you add your plaform with cordova (cordova platform add).
 
 They will be removed when you rm your platform with cordova (cordova platform rm).
@@ -55,7 +55,7 @@ execute with : TARGET=prod; cordova build ios (if you want the prod env to be ta
  
 ## 3. Install the icons and Splash screens
 This hook is an "after_prepare" hook.
-I've revisited the script from Dan becasue I wanted all the icons and splash screen to be copied from source to the platform destinations.
+I've revisited the script from Dan because I wanted all the icons and splash screen to be copied from source to the platform destinations.
 
 The principle is simple : Create a config directory (root of your project) in which you'll create the platform directories and a subdirectory "icons" and another "splash".
 Once done, every time you prepare your project (cordova prepare), theses directories will be put in your platforms !
