@@ -70,7 +70,8 @@ And this hook will make everything for you : Just create a "fonts" directory in 
 Each time you'll prepare your project (cordova prepare), these fonts will be copied in your ios Resources directory and the plist file will be updated.
 
 Don't forget to use the right names (read Mika's article) in your css. That's it !
-There is one simple thing to know the names of your fonts to use. Just add the following code in MainViewController.m in the method viewDidLoad :
+
+There is one simple thing to do if you want to know the names of your fonts to use in your css : Just add the following code in MainViewController.m in the method viewDidLoad :
 
 ```
 - (void)viewDidLoad
@@ -85,6 +86,7 @@ There is one simple thing to know the names of your fonts to use. Just add the f
     }
 }
 ```
+It will display the list of the fonts available to your app with their correct name.
 
 ## 5. Add custom config into xcode .plist file
 This hook is an "after_prepare" hook.
