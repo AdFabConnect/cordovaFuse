@@ -16,7 +16,6 @@
 var fs = require('fs');
 var path = require('path');
 var plist = require('plist');
-var grunt = require('grunt');
 var settings = require('../../config/settings.js');
 //no need to configure below
 var rootdir = process.argv[2];
