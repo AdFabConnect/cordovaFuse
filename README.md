@@ -73,10 +73,15 @@ Don't forget to use the right names (read Mika's article) in your css. That's it
 There is one simple thing to know the names of your fonts to use. Just add the following code in MainViewController.m in the method viewDidLoad :
 
 ```
-for (NSString *name in [UIFont familyNames]) {
-    NSLog(@"Family name : %@", name);
-    for (NSString *font in [UIFont fontNamesForFamilyName:name]) {
-        NSLog(@"Font name : %@", font);
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    for (NSString *name in [UIFont familyNames]) {
+        NSLog(@"Family name : %@", name);
+        for (NSString *font in [UIFont fontNamesForFamilyName:name]) {
+            NSLog(@"Font name : %@", font);
+        }
     }
 }
 ```
