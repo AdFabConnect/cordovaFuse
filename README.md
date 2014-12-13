@@ -64,8 +64,9 @@ Once done, every time you prepare your project (cordova prepare), theses directo
 This hook is an "after_prepare" hook.
 This is always tedious to install new fonts in your iOS cordova project. Mika (https://github.com/mikaelh94) has written an excellent article on this subject :
 http://connect.adfab.fr/tutorial/phonegap-utiliser-des-polices-systemes (ask me if you want it to be translated).
+(Be Careful, custom fonts config has slighly changed in iOS8 since then. See the source code if you need more info.)
 
-And this hook will make everything for you : Just create a "Fonts" directory in the config/'platform' directory and put .otf and .ttf fonts in there.
+And this hook will make everything for you : Just create a "fonts" directory in the config/'platform' directory and put .otf and .ttf fonts in there.
 Each time you'll prepare your project (cordova prepare), these fonts will be copied in your ios Resources directory and the plist file will be updated.
 
 Don't forget to use the right names (read Mika's article) in your css. That's it !
