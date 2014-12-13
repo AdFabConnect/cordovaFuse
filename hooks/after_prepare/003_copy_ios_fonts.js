@@ -33,10 +33,10 @@ platformConfigs.forEach(function(platformName) {
         var resourcePath = path.join(rootdir+"/config", platformName+"/resources");
         fs.readdirSync(resourcePath).forEach(function(resourceType){
             
-            if(resourceType == 'Fonts'){
+            if(resourceType == 'fonts'){
                 var plistFile = rootdir+"/platforms/"+platformName+"/"+settings.appName+"/"+settings.appName+"-Info.plist";
                 var obj = plist.parse(fs.readFileSync(plistFile, "utf8"));
-                obj['Fonts provided by application'] = [];
+                obj['UIAppFonts'] = [];
 
                 // again ignore hidden files
                 if(resourceType[0] != ".") {
@@ -49,7 +49,8 @@ platformConfigs.forEach(function(platformName) {
 	                        var dirLocation = path.join(rootdir,"platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType);
 	                        var destLocation = "platforms/"+platformName+"/"+settings.appName+"/Resources/"+resourceType+"/"+fileName;
 	                        var destfile = path.join(rootdir, destLocation);
-	    
+	    			
+				console.log('dest :' + destfile);
 	                        if (!fs.existsSync(dirLocation)) fs.mkdir(dirLocation);
 	                        // console.log("copying "+srcfile+" to "+destfile);
 	    
@@ -58,7 +59,7 @@ platformConfigs.forEach(function(platformName) {
 	                            fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
 	                        }
 	
-	                        obj['Fonts provided by application'].push(resourceType+"/"+fileName);
+	                        obj['UIAppFonts'].push(fileName);
                     	}
                     });
                 }
@@ -74,3 +75,4 @@ platformConfigs.forEach(function(platformName) {
         });
     }
 });
+
