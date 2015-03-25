@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var plist = require('plist');
 
-var config = require('./config');
+var config = require('../../config');
 
 // no need to configure below
 var rootdir = process.argv[2];
@@ -25,11 +25,12 @@ for(var x=0; x<platforms.length; x++) {
   try {
     var platform = platforms[x].trim().toLowerCase();
 
-    if(platform == 'ios') {
+    if(platform === 'ios') {
       
-      var plistFile = rootdir+"/platforms/"+platformName+"/"+config.appName+"/"+config.appName+"-Info.plist";
+      var plistFile = rootdir+"/platforms/"+platform+"/"+config.appName+"/"+config.appName+"-Info.plist";
       var obj = plist.parse(fs.readFileSync(plistFile, "utf8"));
       var i;
+
       
       for(i in config.plist) {
           obj[i] = config.plist[i];
@@ -42,10 +43,10 @@ for(var x=0; x<platforms.length; x++) {
               console.log("The plist file has been updated");
           }
       });
-
     }
 
   } catch(e) {
+    console.log(e);
     process.stdout.write(e);
   }
 }

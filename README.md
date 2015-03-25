@@ -1,12 +1,11 @@
-cordovaFuse
-===========
+CordovaFuse
+=====================
 
 Let's fuse Cordova projects
 
 The goal of this project is to increase your productivity when you develop phonegap / cordova projects.
 
-Some of these dev have been directly taken from the Holly Schinsky excellent article (http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/) and 
-Dan Moore (http://www.mooreds.com/) (whose THE creator of some of these scripts).
+Some of these dev have been directly taken from the Holly Schinsky excellent article (http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/)
 
 Some of these scripts have been written by us.
 
@@ -15,25 +14,40 @@ The next to come : Being able to update your js files dynamically from the cloud
 
 Stay tuned and enjoy !
 
-##Pre-requisites
+## Quick start
 
-You need node and npm installed on your system (but we assume you have it since you're working with Cordova which has the same pre-requisite)
-Otherwise, you will need to have ImageMagick installed on your computer, [mobile-icon-resizer](https://github.com/muzzley/mobile-icon-resizer) use it to convert icon to different size
+#### Prérequis
 
-## Installation
+- node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
+- cordova : `npm install -g cordova`
+- imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
+- cordova-icon & cordova-splash : `npm install -g cordova-icon cordova-splash` [cordova-icon](https://www.npmjs.com/package/cordova-icon)
+
+#### Instructions
 
 Don't forget to give execute rights to your hooks (chown and chmod).
 
-Open file config/settings.js and change variable appName :
+Open file config.js and change variable appName :
 ```
 var settings = {
-	appName: 'myapp',
+  appName: 'myapp',
 ```
 ! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
-Once installed on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
-# Cordova Hooks
-## 1. Plugins installation
+
+```bash
+$ npm install
+$ gulp
+// @TODO: make a script to create cordova app in tmp folder and move content in current project
+$ cordova platform add [ ios | android ]
+$ cordova build [ ios | android ]
+$ cordova [ emulate | run ] [ ios | android ]
+```
+
+
+## Cordova Hooks
+
+### 1. Plugins installation
 If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
 they will be install when you add your plaform with cordova (cordova platform add).
 
@@ -41,29 +55,19 @@ They will be removed when you rm your platform with cordova (cordova platform rm
 
 Example :
 ```
-	plugins: [
-    	{"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
-    	{"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
-	],
+  plugins: [
+      {"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
+      {"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
+  ],
 ```
-
-
-## 2. Manage your environments
-This hook is an "after_prepare" hook.
-Put a project.json file with key/value in the config directory. Put these keys in the files (under www) you want to see updated by the values.
-Each time you'll prepare your project (cordova prepare), The files will be updated depending on the env you want :
-execute with : TARGET=prod; cordova build ios (if you want the prod env to be taken)
  
-## 3. Install the icons and Splash screens
+### 3. Install the icons and Splash screens
 This hook is an "after_prepare" hook.
-I've revisited the script from Dan because I wanted all the icons and splash screen to be copied from source to the platform destinations.
 
-The principle is simple : Create a config directory (root of your project) in which you'll create the platform directories and a subdirectory "icons" and another "splash".
-Once done, every time you prepare your project (cordova prepare), theses directories will be put in your platforms !
+Just put a icon.png and a splash.png in your project root folder.
+This hook will generate all icons/splashs needed for ios/android.
 
-on the icon-resize folder inside of the config folder, put your icon.png. then everytime the prepare command is executed, this icon (which can be as big / high quality / size as you can) will get converted to the one used in xcode and put inside of /config/ios/resources/icons folder. To change the name of the icon created using mobile-icon-resizer you have to edit this config file [icon-resize-config.js](https://github.com/AdFabConnect/cordovaFuse/blob/master/config/icon-resize/icon-resize-config.js)
-
-## 4. Install Fonts in iOS
+### 4. Install Fonts in iOS
 This hook is an "after_prepare" hook.
 This is always tedious to install new fonts in your iOS cordova project. Mika (https://github.com/mikaelh94) has written an excellent article on this subject :
 http://connect.adfab.fr/tutorial/phonegap-utiliser-des-polices-systemes (ask me if you want it to be translated).
@@ -91,40 +95,59 @@ There is one simple thing to do if you want to know the names of your fonts to u
 ```
 It will display the list of the fonts available to your app with their correct name.
 
-## 5. Add custom config into xcode .plist file
+### 5. Add custom config into xcode .plist file
 This hook is an "after_prepare" hook.
 You need to add all the custom config into config/settings.js
 
 Example :
 ```
-	plist: {
-		"UISupportedInterfaceOrientations": [
-			"UIInterfaceOrientationPortrait",
-			"UIInterfaceOrientationLandscapeLeft",
-			"UIInterfaceOrientationPortraitUpsideDown",
-			"UIInterfaceOrientationLandscapeRight"
-		],
-		"UISupportedInterfaceOrientations~ipad": [
-  			"UIInterfaceOrientationPortrait",
-			"UIInterfaceOrientationLandscapeLeft",
-			"UIInterfaceOrientationPortraitUpsideDown",
-			"UIInterfaceOrientationLandscapeRight"
-		],
-		"UIStatusBarStyle": "UIStatusBarStyleLightContent",
-		"UIViewControllerBasedStatusBarAppearance": false,
-		"UIStatusBarHidden": true
+  plist: {
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+        "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UIStatusBarStyle": "UIStatusBarStyleLightContent",
+    "UIViewControllerBasedStatusBarAppearance": false,
+    "UIStatusBarHidden": true
 }
 ```
 
-# Grunt tasks
-There is one headache you'll want to avoid when working on a Cordova project : Having to launch "Cordova build" each time you want to update your project.
 
-Just launch "grunt" (after a first npm install), and Grunt will watch each time you modify a file under www and automatically launch a "cordova build" for you !
-You can even refresh the simulator automatically !
+## Description
 
-Of course, it doesn't replace the wonderful Phonegap developer app (http://devgirl.org/2014/04/22/introducing-the-phonegap-developer-app/) but it can help (hopefully).
+### [npm](https://www.npmjs.org/) _(package manager)_
 
-Enjoy !
+Toutes les bibliothèques externes sont gérées avec npm, et sont donc présentes dans le dossier *./node_modules*.
 
-If you need additional tools to improve your dev process with cordova, just let us know, We'll try to help ;) (you can also send PR !)
+### [gulp](http://gulpjs.com/) _(build system)_
+
+Construit le dossier _./www_ nécessaire à cordova pour compiler l'application, à partir des sources présentes dans le dossier _./src_ et des bibliothèques externes dans le dossier *./node_modules*.
+
+Le fichier _config.js_ définit les variables de l'application telles que l'environnement, la version ou les chemins des différentes sources et bibliothèques.
+
+Le dossier _./task_ contient les tâches gulp pour construire l'application. Elles sont chargées dans le fichier _gulp.js_.
+- `gulp build` (ou `gulp`) : construit l'application dans le dossier _www_.
+- `gulp watch` : lance un processus de construction de l'application à chaque modification des sources.
+
+### [browserify](https://github.com/substack/browserify-handbook) _(javascript modularity)_
+
+L'application est découpée en modules présents dans le dossier _./src/modules_. Chaque module contient des templates et des modules angular.
+
+Browserify nous permet de regrouper chacun des modules javascript en un seul fichier à l'aide de la méthode `require('modules')`. Les bibliothèques externes récupérées via npm et compatible avec le système de module de node peuvent aussi être intégrées grâce à la méthode `require('modules')`.
+
+Le point d'entrée du regroupement est le fichier _./src/modules/app.js_.
+
+### [sass](http://sass-lang.com/) _(css pre-processor)_
+
+Le point d'entrée est le fichier _./src/assets/app.scss_, il importe les autres fichier sass qui commencent par \_.  
+Lors de la compilation du sass vers le css, on utilise [autoprefixer](https://github.com/ai/autoprefixer) qui ajoute les _vendor prefixes_ nécessaires donc inutile de les écrire nous même.
+
 

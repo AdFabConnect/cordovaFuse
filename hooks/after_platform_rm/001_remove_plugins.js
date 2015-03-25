@@ -7,7 +7,7 @@ var path = require('path');
 var sys = require('sys')
 var exec = require('child_process').exec;
 
-var config = require('./config');
+var config = require('../../config');
 
 var rootdir = process.argv[2];
 

@@ -8,15 +8,12 @@ json/*
 # CORDOVA
 www
 .cordova
-platforms/*
-plugins/*
-
-# NPM
-node_modules
+/platforms/
+/plugins/
 
 # SASS
 src/assets/.sass-cache
 
 # LOCAL
-backup
-/bower_components/
+node_modules
+bower_components
