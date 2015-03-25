@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="fr.adfab.quefaireaparis" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>QueFaireaParis</name>
+    <description>
+        Que Faire à Paris, l'agenda des sorties culturelles et sportives.
+    </description>
+    <author email="valentin.cassat@paris.fr" href="">
+      Le Studio - DICOM
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+
+    <preference name="fullscreen" value="false" />
+    <!-- <preference name="Orientation" value="portrait" /> -->
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+
+    <!-- iOS specific -->
+    <preference name="BackupWebStorage" value="none" />
+</widget>

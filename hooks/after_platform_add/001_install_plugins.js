@@ -7,14 +7,13 @@ var path = require('path');
 var sys = require('sys')
 var exec = require('child_process').exec;
 
-var settings = require('../../config/settings.js');
+var config = require('./config');
 
 var rootdir = process.argv[2];
 
 if (rootdir) {
-	//var ourconfigfile = path.join(rootdir, "config", "project.json");
-    //var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
-    var plugins = settings.plugins;
+    
+    var plugins = config.plugins;
     
     function puts(error, stdout, stderr) {
         sys.puts(stdout)

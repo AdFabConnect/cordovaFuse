@@ -1,1 +1,22 @@
-/.project
+# GENERAL
+*.keystore
+*.sw*
+.DS_Store
+.project
+json/*
+
+# CORDOVA
+www
+.cordova
+platforms/*
+plugins/*
+
+# NPM
+node_modules
+
+# SASS
+src/assets/.sass-cache
+
+# LOCAL
+backup
+/bower_components/
