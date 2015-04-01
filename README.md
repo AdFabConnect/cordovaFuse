@@ -21,7 +21,6 @@ Stay tuned and enjoy !
 - node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
 - cordova : `npm install -g cordova`
 - imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
-- cordova-icon & cordova-splash : `npm install -g cordova-icon cordova-splash` [cordova-icon](https://www.npmjs.com/package/cordova-icon)
 
 #### Instructions
 
@@ -37,8 +36,9 @@ var settings = {
 
 ```bash
 $ npm install
+$ bower install
+$ sh init.sh
 $ gulp
-// @TODO: make a script to create cordova app in tmp folder and move content in current project
 $ cordova platform add [ ios | android ]
 $ cordova build [ ios | android ]
 $ cordova [ emulate | run ] [ ios | android ]

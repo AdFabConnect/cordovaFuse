@@ -4,6 +4,7 @@ module.exports = {
    * Global Variables
    */
     appName: 'myApp'
+  , bundleId: 'fr.adfab.myapp'
   , env: 'development'
   , version: '0.0.1'
 
@@ -33,8 +34,8 @@ module.exports = {
    * Plugins to install/uninstall after platform_add/remove hook
    */
   , plugins: [
-        {"org.apache.cordova.console"       : "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"}
-      , {"org.apache.cordova.splashscreen"  : "https://git-wip-us.apache.org/repos/asf/cordova-plugin-splashscreen.git"}
+        {"org.apache.cordova.console"       : "https://github.com/apache/cordova-plugin-console.git"}
+      , {"org.apache.cordova.splashscreen"  : "https://github.com/apache/cordova-plugin-splashscreen.git"}
     ]
 
   /**
