@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  font-size: 14px;
+}
+
+#view-wrapper {
+  position: absolute;
+  top: $header-height;
+  left: 0;
+  width: 100%;
+  min-height: calc(100% - #{$header-height});
+}
