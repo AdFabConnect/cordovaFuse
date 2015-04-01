@@ -26,10 +26,11 @@ Stay tuned and enjoy !
 
 Don't forget to give execute rights to your hooks (chown and chmod).
 
-Open file config.js and change variable appName :
+Open file config.js and change variables appName and bundleId:
 ```
 var settings = {
   appName: 'myapp',
+  bundleId: 'fr.adfab.myapp',
 ```
 ! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
@@ -56,8 +57,8 @@ They will be removed when you rm your platform with cordova (cordova platform rm
 Example :
 ```
   plugins: [
-      {"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
-      {"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
+      {"org.apache.cordova.console"       : "https://github.com/apache/cordova-plugin-console.git"}
+    , {"org.apache.cordova.splashscreen"  : "https://github.com/apache/cordova-plugin-splashscreen.git"}
   ],
 ```
  
