@@ -10,13 +10,11 @@ var notify      = require("gulp-notify");
 module.exports = function() {
   return browserify(config.path.scriptsEntry)
     .bundle()
-    .pipe(plumber({errorHandler: notify.onError({
+    .on('error', notify.onError({
         message: "<%= error.message %>"
-      , title: "JavaScript Error"
-    })}))
+      , title: "JS Error"
+    }))
     .pipe(source('app.js'))
     .pipe(gulp.dest(config.path.build))
-    .on('error', function() {
-      this.emit("error", new Error("JavaScript Error"));
-    });
+    ;
 };
