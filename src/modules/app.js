@@ -23,7 +23,7 @@ angular.module('myApp', [
 
         .state('home', {
             url: '/home'
-          , templateUrl: '/modules/home/home.view.html'
+          , templateUrl: 'modules/home/home.view.html'
           , controller: 'HomeCtrl'
         })
         

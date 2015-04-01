@@ -21,24 +21,25 @@ Stay tuned and enjoy !
 - node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
 - cordova : `npm install -g cordova`
 - imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
-- cordova-icon & cordova-splash : `npm install -g cordova-icon cordova-splash` [cordova-icon](https://www.npmjs.com/package/cordova-icon)
 
 #### Instructions
 
 Don't forget to give execute rights to your hooks (chown and chmod).
 
-Open file config.js and change variable appName :
+Open file config.js and change variables appName and bundleId:
 ```
 var settings = {
   appName: 'myapp',
+  bundleId: 'fr.adfab.myapp',
 ```
 ! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
 
 ```bash
 $ npm install
+$ bower install
+$ sh init.sh
 $ gulp
-// @TODO: make a script to create cordova app in tmp folder and move content in current project
 $ cordova platform add [ ios | android ]
 $ cordova build [ ios | android ]
 $ cordova [ emulate | run ] [ ios | android ]
@@ -56,8 +57,8 @@ They will be removed when you rm your platform with cordova (cordova platform rm
 Example :
 ```
   plugins: [
-      {"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
-      {"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
+      {"org.apache.cordova.console"       : "https://github.com/apache/cordova-plugin-console.git"}
+    , {"org.apache.cordova.splashscreen"  : "https://github.com/apache/cordova-plugin-splashscreen.git"}
   ],
 ```
  
