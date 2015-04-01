@@ -1,0 +1,11 @@
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  line-height: $header-height;
+
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
