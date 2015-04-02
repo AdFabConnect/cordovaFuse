@@ -36,6 +36,7 @@ module.exports = {
   , plugins: [
         {"org.apache.cordova.console"       : "https://github.com/apache/cordova-plugin-console.git"}
       , {"org.apache.cordova.splashscreen"  : "https://github.com/apache/cordova-plugin-splashscreen.git"}
+      , {"com.telerik.plugins.wkwebview"    : "https://github.com/Telerik-Verified-Plugins/WKWebView.git"}
     ]
 
   /**

@@ -1,11 +1,7 @@
 #!/bin/sh
-cd `dirname $0`
-APPLICATION=$1
-DOMAIN=$2
-DIRNAME=`pwd`
-BASENAME=`basename ${DIRNAME}`
-NAMESPACE=`echo $2 | sed -e 's/\./\n/g' | tac | xargs echo | sed -e 's/ /./g'`
-echo $DIRNAME $BASENAME
-cordova create tmp ${NAMESPACE} ${APPLICATION}
+APPLICATION=`cat config.js | grep  "appName" | sed -e "s/appName: '//" -e "s/'//"`
+DOMAIN=`cat config.js | grep  "bundleId" | sed -e "s/, bundleId: '//" -e "s/'//"`
+
+cordova create tmp $DOMAIN $APPLICATION
 cp -r tmp/* ./
 rm -rf tmp
