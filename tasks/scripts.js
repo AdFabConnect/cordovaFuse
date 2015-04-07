@@ -11,8 +11,8 @@ module.exports = function() {
   return browserify(config.path.scriptsEntry)
     .bundle()
     .on('error', notify.onError({
-        message: "<%= error.message %>"
-      , title: "JS Error"
+      message: "<%= error.message %>",
+      title: "JS Error"
     }))
     .pipe(source('app.js'))
     .pipe(gulp.dest(config.path.build))

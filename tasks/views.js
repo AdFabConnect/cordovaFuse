@@ -8,8 +8,8 @@ var notify  = require('gulp-notify');
 module.exports = function() {
   return gulp.src(config.path.views)
     .pipe(plumber({errorHandler: notify.onError({
-        message: "<%= error.message %>"
-      , title: "Views Error"
+      message: "<%= error.message %>",
+      title: "Views Error"
     })}))
     .pipe(gulp.dest(config.path.build))
     .on('error', function() {
