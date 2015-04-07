@@ -11,8 +11,8 @@ var notify        = require('gulp-notify');
 module.exports = function() {
   return gulp.src(config.path.styles)
     .pipe(plumber({errorHandler: notify.onError({
-        message: "<%= error.message %>"
-      , title: "SASS Error"
+      message: "<%= error.message %>",
+      title: "SASS Error"
     })}))
     .pipe(sass())
     .pipe(autoprefixer())

@@ -7,6 +7,6 @@ var uglify          = require('gulp-uglify');
 module.exports = function() {
   return gulp.src(mainBowerFiles())
     .pipe(concat('libs.min.js'))
-    .pipe(uglify({mangle: false}))
+    // .pipe(uglify({mangle: false}))
     .pipe(gulp.dest(config.path.build+'lib'));
 };
