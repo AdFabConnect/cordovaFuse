@@ -18,8 +18,7 @@ angular.module('myApp', [
 
 .config([
   '$routeProvider',
-  '$locationProvider',
-  function($routeProvider, $locationProvider) {
+  function($routeProvider) {
     $routeProvider
 
       .when('/', {
@@ -30,9 +29,8 @@ angular.module('myApp', [
       .otherwise({
         redirectTo: '/'
       })
-    ;
 
-    $locationProvider.html5Mode(true);
+    ;
   }
 ])
 
