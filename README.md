@@ -19,8 +19,8 @@ Stay tuned and enjoy !
 #### Prérequis
 
 - node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
-- cordova : `npm install -g cordova`
 - imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
+- cordova + cordova-icon + cordova-splash : `npm install -g cordova cordova-icon cordova-splash`
 
 #### Instructions
 
