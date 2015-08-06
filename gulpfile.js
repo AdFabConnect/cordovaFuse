@@ -7,7 +7,6 @@ var gulp            = require('gulp'),
     autoprefixer    = require('gulp-autoprefixer'),
     runSequence     = require('run-sequence'),
     source          = require('vinyl-source-stream'),
-    merge           = require('merge-stream'),
     browserify      = require('browserify');
 
 var config = { path: { 
@@ -72,7 +71,7 @@ gulp.task('styles', function() {
 
 // TODO uglify
 gulp.task('scripts', function() {
-    var stream1 = browserify(config.path.scriptsEntry)
+    return browserify(config.path.scriptsEntry)
         .bundle()
         .on('error', notify.onError({
             message: "<%= error.message %>",
@@ -80,12 +79,6 @@ gulp.task('scripts', function() {
         }))
         .pipe(source('app.js'))
         .pipe(gulp.dest(config.path.build));
-
-    var stream2 = gulp
-        .src('./src/cordovaInit.js')
-        .pipe(gulp.dest(config.path.build));
-
-    return merge(stream1, stream2);
 });
 
 gulp.task('clean', function(cb) {
@@ -95,6 +88,10 @@ gulp.task('clean', function(cb) {
 gulp.task('build', ['clean'], function() {
     gulp
         .src('config.xml')
+        .pipe(gulp.dest(config.path.build));
+
+    gulp
+        .src('./src/cordovaInit.js')
         .pipe(gulp.dest(config.path.build));
 
   return runSequence(['jshint', 'scripts', 'styles', 'views', 'images', 'fonts']);
