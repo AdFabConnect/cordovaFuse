@@ -8,6 +8,7 @@ gulp.task('styles', require('./tasks/styles'));
 gulp.task('views', require('./tasks/views'));
 gulp.task('images', require('./tasks/images'));
 gulp.task('fonts', require('./tasks/fonts'));
+gulp.task('jshint', require('./tasks/jshint'));
 
 /**
  * Clean build directory (www)
@@ -23,8 +24,8 @@ gulp.task('build', ['clean'], function() {
   gulp
     .src('config.xml')
     .pipe(gulp.dest(config.path.build));
-    
-  return runSequence(['scripts', 'styles', 'views', 'images', 'fonts']);
+
+  return runSequence(['jshint', 'scripts', 'styles', 'views', 'images', 'fonts']);
 });
 
 /**
@@ -32,7 +33,7 @@ gulp.task('build', ['clean'], function() {
  */
 gulp.task('watch', ['build'],  function() {
   gulp.watch(config.path.styles,  ['styles']);
-  gulp.watch(config.path.scripts, ['scripts']);
+  gulp.watch(config.path.scripts, ['jshint', 'scripts']);
   gulp.watch(config.path.views,   ['views']);
   gulp.watch(config.path.images,  ['images']);
   gulp.watch(config.path.fonts,   ['fonts']);

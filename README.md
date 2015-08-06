@@ -48,6 +48,16 @@ $ cordova [ emulate | run ] [ ios | android ]
 
 All project dependencies should be managed in the package.json. This file contains cordova plugins (see next chapter), build depencencies and front-end librairies and frameworks.
 
+#### Pre-commit
+
+A pre-commit hook is available during development. It'll prevent some errors and code style issues by running jshint. To install it, just do :
+
+```
+ln -s ../../hooks/pre-commit.sh .git/hooks/pre-commit
+```
+
+You can update the .jshintrc file to match your team coding style.
+
 
 ## Cordova Hooks
 

@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = angular.module('myApp.common.menu', [])
+module.exports = angular.module('myApp.common.menu', []);
