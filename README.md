@@ -37,13 +37,16 @@ var settings = {
 
 ```bash
 $ npm install
-$ bower install
 $ sh init.sh
 $ gulp
 $ cordova platform add [ ios | android ]
 $ cordova build [ ios | android ]
 $ cordova [ emulate | run ] [ ios | android ]
 ```
+
+#### Dependencies
+
+All project dependencies should be managed in the package.json. This file contains cordova plugins (see next chapter), build depencencies and front-end librairies and frameworks.
 
 
 ## Cordova Hooks
@@ -73,13 +76,13 @@ Example :
   ]
 ```
  
-### 3. Install the icons and Splash screens
+### 2. Install the icons and Splash screens
 This hook is an "after_prepare" hook.
 
 Just put a icon.png and a splash.png in your project root folder.
 This hook will generate all icons/splashs needed for ios/android.
 
-### 4. Install Fonts in iOS
+### 3. Install Fonts in iOS
 This hook is an "after_prepare" hook.
 This is always tedious to install new fonts in your iOS cordova project. Mika (https://github.com/mikaelh94) has written an excellent article on this subject :
 http://connect.adfab.fr/tutorial/phonegap-utiliser-des-polices-systemes (ask me if you want it to be translated).
