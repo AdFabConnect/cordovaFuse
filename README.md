@@ -7,6 +7,8 @@ This projects aims to increase your productivity when you develop cordova projec
 
 With this, you can start a [Cordova](https://cordova.apache.org/) application based on [AngularJS](https://angularjs.org/). We also use [gulp](http://gulpjs.com/), [sass](http://sass-lang.com/), [autoprefixer](https://github.com/ai/autoprefixer) and [browserify](http://browserify.org/) to build our apps.
 
+Also, we already included two of the most useful cordova plugins available : [wkwebview](https://github.com/Telerik-Verified-Plugins/WKWebView) and [crosswalk](http://crosswalk-project.org/). These two will help you to have consistent graphics, to sped up the app' and have access to the latest APIs available in browsers. 
+
 Stay tuned and enjoy !
 
 ## Quick start

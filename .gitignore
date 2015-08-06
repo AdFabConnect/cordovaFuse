@@ -1,9 +1,6 @@
 # GENERAL
-*.keystore
-*.sw*
 .DS_Store
 .project
-json/*
 
 # CORDOVA
 www
@@ -17,4 +14,3 @@ src/assets/.sass-cache
 
 # LOCAL
 node_modules
-bower_components
