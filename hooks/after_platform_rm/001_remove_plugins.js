@@ -7,21 +7,16 @@ var path = require('path');
 var sys = require('sys')
 var exec = require('child_process').exec;
 
-var config = require('../../config');
+var config = require('../../package.json');
 
 var rootdir = process.argv[2];
 
-if (rootdir) {
-    var plugins = config.plugins;
-    
+if (rootdir) {  
     function puts(error, stdout, stderr) {
         sys.puts(stdout)
     }
     
-    plugins.forEach(function(plugin){
-        for (var prop in plugin) {
-            //console.log(prop + " is " + plugin[prop]);
-            exec("cordova plugin rm " + prop, puts);
-         }
+    config.cordova.plugins.forEach(function(plugin){
+        exec("cordova plugin rm " + plugin, puts);
     });
 }

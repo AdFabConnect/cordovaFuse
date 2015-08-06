@@ -20,19 +20,19 @@ Stay tuned and enjoy !
 
 - node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
 - imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
-- cordova + cordova-icon + cordova-splash : `npm install -g cordova cordova-icon cordova-splash`
+- cordova : `npm install -g cordova`
 
 #### Instructions
 
 Don't forget to give execute rights to your hooks (chown and chmod).
 
-Open file config.js and change variables appName and bundleId:
+Open file package.json and change variables name and bundleId:
 ```
 var settings = {
   appName: 'myapp',
   bundleId: 'fr.adfab.myapp',
 ```
-! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
+! name is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
 
 ```bash
@@ -49,17 +49,28 @@ $ cordova [ emulate | run ] [ ios | android ]
 ## Cordova Hooks
 
 ### 1. Plugins installation
-If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
-they will be install when you add your plaform with cordova (cordova platform add).
+If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in package.json and they will be installed when you add your plaform with cordova (cordova platform add).
 
 They will be removed when you rm your platform with cordova (cordova platform rm).
 
 Example :
 ```
-  plugins: [
-      {"org.apache.cordova.console"       : "https://github.com/apache/cordova-plugin-console.git"}
-    , {"org.apache.cordova.splashscreen"  : "https://github.com/apache/cordova-plugin-splashscreen.git"}
-  ],
+  "plugins": [
+    "cordova-plugin-console",
+    "cordova-plugin-splashscreen",
+    "com.telerik.plugins.wkwebview",
+    "cordova-plugin-crosswalk-webview"
+  ]
+```
+
+**Warning** : We strongly recommend to fix your plugins versions. For instance : 
+```
+  "plugins": [
+    "cordova-plugin-console@r1.0.1",
+    "cordova-plugin-splashscreen@r2.1.0",
+    "com.telerik.plugins.wkwebview",
+    "cordova-plugin-crosswalk-webview@1.2.0"
+  ]
 ```
  
 ### 3. Install the icons and Splash screens
@@ -95,32 +106,6 @@ There is one simple thing to do if you want to know the names of your fonts to u
 }
 ```
 It will display the list of the fonts available to your app with their correct name.
-
-### 5. Add custom config into xcode .plist file
-This hook is an "after_prepare" hook.
-You need to add all the custom config into config/settings.js
-
-Example :
-```
-  plist: {
-    "UISupportedInterfaceOrientations": [
-      "UIInterfaceOrientationPortrait",
-      "UIInterfaceOrientationLandscapeLeft",
-      "UIInterfaceOrientationPortraitUpsideDown",
-      "UIInterfaceOrientationLandscapeRight"
-    ],
-    "UISupportedInterfaceOrientations~ipad": [
-        "UIInterfaceOrientationPortrait",
-      "UIInterfaceOrientationLandscapeLeft",
-      "UIInterfaceOrientationPortraitUpsideDown",
-      "UIInterfaceOrientationLandscapeRight"
-    ],
-    "UIStatusBarStyle": "UIStatusBarStyleLightContent",
-    "UIViewControllerBasedStatusBarAppearance": false,
-    "UIStatusBarHidden": true
-}
-```
-
 
 ## Description
 

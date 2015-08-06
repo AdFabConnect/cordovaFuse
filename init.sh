@@ -1,6 +1,8 @@
 #!/bin/sh
-APPLICATION=`cat config.js | grep  "appName" | sed -e "s/appName: '//" -e "s/'//"`
-DOMAIN=`cat config.js | grep  "bundleId" | sed -e "s/, bundleId: '//" -e "s/'//"`
+set -euo pipefail
+
+APPLICATION=`cat package.json | grep -m 1 "name" | sed -e 's/"name": "//' -e 's/",//'`
+DOMAIN=`cat package.json | grep  "bundleId" | sed -e 's/"bundleId": "//' -e 's/",//'`
 
 cordova create tmp $DOMAIN $APPLICATION
 cp -r tmp/* ./

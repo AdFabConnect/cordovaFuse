@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../../config');
+var config = require('../../package.json');
 
 angular.module('myApp', [
   'ngRoute',
@@ -11,9 +11,8 @@ angular.module('myApp', [
 ])
 
 .constant('DEFAULT', {
-  'environment' : config.env,
   'version' : config.version,
-  'appName' : config.appName
+  'appName' : config.name
 })
 
 .config([
