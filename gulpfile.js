@@ -8,7 +8,6 @@ gulp.task('styles', require('./tasks/styles'));
 gulp.task('views', require('./tasks/views'));
 gulp.task('images', require('./tasks/images'));
 gulp.task('fonts', require('./tasks/fonts'));
-gulp.task('js', require('./tasks/js'));
 
 /**
  * Clean build directory (www)
@@ -21,23 +20,22 @@ gulp.task('clean', function(cb) {
  * Build app from sources
  */
 gulp.task('build', ['clean'], function() {
-  gulp.src('config.xml')
+  gulp
+    .src('config.xml')
     .pipe(gulp.dest(config.path.build));
-  return runSequence(['scripts', 'styles', 'views', 'images', 'fonts', 'js']);
+    
+  return runSequence(['scripts', 'styles', 'views', 'images', 'fonts']);
 });
 
 /**
  * Watch task for development
  */
 gulp.task('watch', ['build'],  function() {
-
   gulp.watch(config.path.styles,  ['styles']);
   gulp.watch(config.path.scripts, ['scripts']);
   gulp.watch(config.path.views,   ['views']);
   gulp.watch(config.path.images,  ['images']);
   gulp.watch(config.path.fonts,   ['fonts']);
-  gulp.watch(config.path.js,   	  ['js']);
-
 });
 
 gulp.task('default', ['build']);
