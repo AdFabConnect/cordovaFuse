@@ -27,8 +27,9 @@ Open file package.json and change variables name and bundleId:
 
 ```bash
 $ npm install
-$ sh init.sh
-$ gulp
+$ cordova create tmp com.mycompany.myapp myapp && cp -r tmp/* ./ && rm -rf tmp
+$ gulp [ watch ]
+
 $ cordova platform add [ ios | android ]
 $ cordova build [ ios | android ]
 $ cordova [ emulate | run ] [ ios | android ]
