@@ -12,12 +12,5 @@ module.exports = {
       , scriptsEntry:   './src/modules/app.js'
       , scripts:        ['./src/modules/**/*.js']
       , views:          ['./src/**/*.html']
-      , libBase:        './bower_components'
-      , libs:           [ 
-        './node_modules/angular/angular.js',
-        './node_modules/angular-animate/angular-animate.js',
-        './node_modules/angular-resource/angular-resource.js',
-        './node_modules/angular-route/angular-route.js',
-      ]
     }
 };

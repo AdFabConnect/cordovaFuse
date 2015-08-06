@@ -1,11 +1,12 @@
 'use strict';
 
-var config = require('../../package.json');
+var config  = require('../../package.json');
+var angular = require('angular');
 
 angular.module('myApp', [
-  'ngRoute',
-  'ngAnimate',
-  'ngResource',
+  require('angular-animate'),
+  require('angular-resource'),
+  require('angular-route'),
   require('./common/common.module.js').name,
   require('./home/home.module.js').name
 ])
