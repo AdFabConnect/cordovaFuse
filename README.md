@@ -3,37 +3,27 @@ CordovaFuse
 
 Let's fuse Cordova projects
 
-The goal of this project is to increase your productivity when you develop phonegap / cordova projects.
+This projects aims to increase your productivity when you develop cordova projects. We use it every day to build real life applications, and it's improved based on our experience on these projects.
 
-Some of these dev have been directly taken from the Holly Schinsky excellent article (http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/)
-
-Some of these scripts have been written by us.
-
-Furthermore, we'll update this Fuse frequently with astounding new features. 
-The next to come : Being able to update your js files dynamically from the cloud (You won't have to resubmit your app for a js bug fix !)
+With this, you can start a [Cordova](https://cordova.apache.org/) application based on [AngularJS](https://angularjs.org/). We also use [gulp](http://gulpjs.com/), [sass](http://sass-lang.com/), [autoprefixer](https://github.com/ai/autoprefixer) and [browserify](http://browserify.org/) to build our apps.
 
 Stay tuned and enjoy !
 
 ## Quick start
 
-#### Prérequis
+#### Requirements
 
-- node + npm : `brew install node` ou [visionmedia/n](https://github.com/visionmedia/n)
-- imagemagick : `brew install imagemagick`, pour Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows)
-- cordova : `npm install -g cordova`
+- node : `brew install node` or [visionmedia/n](https://github.com/visionmedia/n)
+- imagemagick : `brew install imagemagick`, for Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows) (used to generate icons and splashscreen)
 
 #### Instructions
 
-Don't forget to give execute rights to your hooks (chown and chmod).
-
 Open file package.json and change variables name and bundleId:
 ```
-var settings = {
-  appName: 'myapp',
+  name: 'myapp',
   bundleId: 'fr.adfab.myapp',
 ```
 ! name is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
-
 
 ```bash
 $ npm install
@@ -92,61 +82,6 @@ This hook is an "after_prepare" hook.
 Just put a icon.png and a splash.png in your project root folder.
 This hook will generate all icons/splashs needed for ios/android.
 
-### 3. Install Fonts in iOS
-This hook is an "after_prepare" hook.
-This is always tedious to install new fonts in your iOS cordova project. Mika (https://github.com/mikaelh94) has written an excellent article on this subject :
-http://connect.adfab.fr/tutorial/phonegap-utiliser-des-polices-systemes (ask me if you want it to be translated).
-(Be Careful, custom fonts config has slighly changed in iOS8 since then. See the source code if you need more info.)
 
-And this hook will make everything for you : Just create a "fonts" directory in the config/'platform' directory and put .otf and .ttf fonts in there.
-Each time you'll prepare your project (cordova prepare), these fonts will be copied in your ios Resources directory and the plist file will be updated.
-
-Don't forget to use the right names (read Mika's article) in your css. That's it !
-
-There is one simple thing to do if you want to know the names of your fonts to use in your css : Just add the following code in MainViewController.m in the method viewDidLoad :
-
-```
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    for (NSString *name in [UIFont familyNames]) {
-        NSLog(@"Family name : %@", name);
-        for (NSString *font in [UIFont fontNamesForFamilyName:name]) {
-            NSLog(@"Font name : %@", font);
-        }
-    }
-}
-```
-It will display the list of the fonts available to your app with their correct name.
-
-## Description
-
-### [npm](https://www.npmjs.org/) _(package manager)_
-
-Toutes les bibliothèques externes sont gérées avec npm, et sont donc présentes dans le dossier *./node_modules*.
-
-### [gulp](http://gulpjs.com/) _(build system)_
-
-Construit le dossier _./www_ nécessaire à cordova pour compiler l'application, à partir des sources présentes dans le dossier _./src_ et des bibliothèques externes dans le dossier *./node_modules*.
-
-Le fichier _config.js_ définit les variables de l'application telles que l'environnement, la version ou les chemins des différentes sources et bibliothèques.
-
-Le dossier _./task_ contient les tâches gulp pour construire l'application. Elles sont chargées dans le fichier _gulp.js_.
-- `gulp build` (ou `gulp`) : construit l'application dans le dossier _www_.
-- `gulp watch` : lance un processus de construction de l'application à chaque modification des sources.
-
-### [browserify](https://github.com/substack/browserify-handbook) _(javascript modularity)_
-
-L'application est découpée en modules présents dans le dossier _./src/modules_. Chaque module contient des templates et des modules angular.
-
-Browserify nous permet de regrouper chacun des modules javascript en un seul fichier à l'aide de la méthode `require('modules')`. Les bibliothèques externes récupérées via npm et compatible avec le système de module de node peuvent aussi être intégrées grâce à la méthode `require('modules')`.
-
-Le point d'entrée du regroupement est le fichier _./src/modules/app.js_.
-
-### [sass](http://sass-lang.com/) _(css pre-processor)_
-
-Le point d'entrée est le fichier _./src/assets/app.scss_, il importe les autres fichier sass qui commencent par \_.  
-Lors de la compilation du sass vers le css, on utilise [autoprefixer](https://github.com/ai/autoprefixer) qui ajoute les _vendor prefixes_ nécessaires donc inutile de les écrire nous même.
 
 
