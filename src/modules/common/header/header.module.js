@@ -8,9 +8,9 @@ module.exports = angular.module('myApp.common.header', [])
         restrict: 'EA',
         templateUrl: 'modules/common/header/header.html',
         replace: true,
-        link: function (scope, el, attrs) {
+        link: function () {
 
         }
       };
     }
-  ])
+  ]);

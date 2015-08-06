@@ -1,24 +1,45 @@
 {
-  "name": "cordova-angular-fuse",
+  "name": "myApp",
+  "bundleId": "fr.adfab.myapp",
   "version": "0.0.1",
   "description": "A ready-to-go structure for cordova and angular",
   "author": {
     "name": "Adfab Connect"
   },
-  "dependencies": {
+  "devDependencies": {
     "browserify": "^9.0.3",
+    "cordova": "^5.0.0",
+    "cordova-icon": "^0.3.0",
+    "cordova-splash": "^0.3.0",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.11.2",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.0",
     "gulp-sass": "^1.3.3",
     "gulp-uglify": "^1.1.0",
-    "main-bower-files": "^2.6.2",
-    "merge-stream": "^0.1.7",
-    "plist": "^1.1.0",
+    "jshint-stylish": "^2.0.1",
     "run-sequence": "^1.0.2",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "cordova": {
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-console",
+      "cordova-plugin-splashscreen",
+      "com.telerik.plugins.wkwebview",
+      "cordova-plugin-crosswalk-webview"
+    ]
+  },
+  "dependencies": {
+    "angular": "^1.4.3",
+    "angular-animate": "^1.4.3",
+    "angular-resource": "^1.4.3",
+    "angular-route": "^1.4.3"
   }
 }

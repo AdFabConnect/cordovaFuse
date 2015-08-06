@@ -5,4 +5,4 @@ module.exports = angular.module('myApp.common', [
     require('./menu/menu.module.js').name
   ])
 
-  .directive('loader', require('./loader.directive.js'))
+  .directive('loader', require('./loader.directive.js'));

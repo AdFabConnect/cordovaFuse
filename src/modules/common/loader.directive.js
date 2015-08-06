@@ -15,5 +15,5 @@ module.exports = function loader() {
         element.removeClass('show');
       });
     }
-  }
+  };
 };
