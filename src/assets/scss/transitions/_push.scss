@@ -1,0 +1,44 @@
+
+$pushAnimationDuration: .6s;
+.push {
+    &.left {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-right $pushAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-left $pushAnimationDuration ease both;
+            }
+        }
+    }
+    &.right {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-left $pushAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-right $pushAnimationDuration ease both;
+            }
+        }
+    }
+    &.top {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-bottom $pushAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-top $pushAnimationDuration ease both;
+            }
+        }
+    }
+    &.bottom {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-top $pushAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-bottom $pushAnimationDuration ease both;
+            }
+        }
+    }
+}

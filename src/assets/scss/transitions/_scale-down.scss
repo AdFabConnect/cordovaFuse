@@ -1,0 +1,13 @@
+$scaleDownEnterAnimationDuration: .5s;
+$scaleDownLeaveAnimationDuration: .7s;
+
+.scale-down {
+    [ui-view] {
+        &.ng-enter {
+            animation: scale-up-down $scaleUpEnterAnimationDuration ease both $scaleUpLeaveAnimationDuration - $scaleUpEnterAnimationDuration;
+        }
+        &.ng-leave {
+            animation: scale-down $scaleDownLeaveAnimationDuration ease both;
+        }
+    }
+}

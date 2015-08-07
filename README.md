@@ -84,7 +84,3 @@ This hook is an "after_prepare" hook.
 
 Just put a icon.png and a splash.png in your project root folder.
 This hook will generate all icons/splashs needed for ios/android.
-
-
-
-

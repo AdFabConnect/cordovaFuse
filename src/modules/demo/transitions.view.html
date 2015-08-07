@@ -1,0 +1,8 @@
+<h1>Transitions</h1>
+
+<p>Le module de transitions se base sur ngAnimate</p>
+<p>Dans le ddossier scss vous trouverez de nombreuses animations. Celui de base, _animations, est à inclure dès que vous voulez utiliser les transitions animées.</p>
+<p>Ensuite animation est placée dans un fichier séparé du même nom que la classe utilisée</p>
+<p>Le module de transitions va ajouter une classe au body lors des transitions ainsi qu'une direction, puis se base sur ng-enter/ng-leave pour jouer les animations des 2 pages</p>
+<p>Il faut juste penser à inclure le .scss des transitions souhaitées, et mettre un attribut transition="[transitionName] [transitionDirection]" sur vos liens</p>
+<p><a ui-sref="app.menu" transition="push-fade">Les menus</a></p>

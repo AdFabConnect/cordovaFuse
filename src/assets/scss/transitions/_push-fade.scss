@@ -1,0 +1,75 @@
+$pushFadeAnimationDuration: .7s;
+.push-fade {
+    &.left {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-right-fade $pushFadeAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-left-fade $pushFadeAnimationDuration ease both;
+            }
+        }
+    }
+    &.right {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-left-fade $pushFadeAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-right-fade $pushFadeAnimationDuration ease both;
+            }
+        }
+    }
+    &.top {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-bottom-fade $pushFadeAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-top-fade $pushFadeAnimationDuration ease both;
+            }
+        }
+    }
+    &.bottom {
+        [ui-view] {
+            &.ng-enter {
+                animation: move-from-top-fade $pushFadeAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-bottom-fade $pushFadeAnimationDuration ease both;
+            }
+        }
+    }
+}
+
+
+/* move from / to and fade */
+
+@keyframes move-to-left-fade {
+  from { }
+  to { opacity: 0.3; transform: translateX(-100%); }
+}
+@keyframes move-from-left-fade {
+  from { opacity: 0.3; transform: translateX(-100%); }
+}
+@keyframes move-to-right-fade {
+  from { }
+  to { opacity: 0.3; transform: translateX(100%); }
+}
+@keyframes move-from-right-fade {
+  from { opacity: 0.3; transform: translateX(100%); }
+}
+@keyframes move-to-top-fade {
+  from { }
+  to { opacity: 0.3; transform: translateY(-100%); }
+}
+@keyframes move-from-top-fade {
+  from { opacity: 0.3; transform: translateY(-100%); }
+}
+@keyframes move-to-bottom-fade {
+  from { }
+  to { opacity: 0.3; transform: translateY(100%); }
+}
+@keyframes move-from-bottom-fade {
+  from { opacity: 0.3; transform: translateY(100%); }
+}
