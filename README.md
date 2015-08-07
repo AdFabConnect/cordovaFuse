@@ -37,14 +37,12 @@ var settings = {
 
 ```bash
 $ npm install
-$ bower install
 $ sh init.sh
 $ gulp
 $ cordova platform add [ ios | android ]
 $ cordova build [ ios | android ]
 $ cordova [ emulate | run ] [ ios | android ]
 ```
-
 
 ## Cordova Hooks
 
@@ -151,4 +149,15 @@ Le point d'entrée du regroupement est le fichier _./src/modules/app.js_.
 Le point d'entrée est le fichier _./src/assets/app.scss_, il importe les autres fichier sass qui commencent par \_.  
 Lors de la compilation du sass vers le css, on utilise [autoprefixer](https://github.com/ai/autoprefixer) qui ajoute les _vendor prefixes_ nécessaires donc inutile de les écrire nous même.
 
+## Transitions entre les pages
 
+Les transitions entre les pages sont gérées par le module ngTransitions. Ce module utilise ng-animate et les lcasses ng-enter/ng-leave et ajoute une classe au body afin de jouer l'animation souhaitée lors des transitions.
+Vous pouvez éditer le fichier pour changer l'animation et la direction par défaut.
+Pour jouer une transition au clic sur un lien il suffit d'ajouter un attribut "transition": <a href="" title="" transition="">
+Les valeurs possibles sont:
+- "<transitionName>" qui jouera l'animation dans la direction par défaut
+- ""<transitionName> <direction>" qui jouera l'animation dans la direction souhaitée
+- "back" qui  jouera l'animation précédemment jouée dans la direction opposée.
+
+Pour alléger la css au maximum les animations de transitions sont dans des fichier .scss différents. Il suffit d'inclure le _animations.scss qui est commun à toutes les animations, puis le ou les fichiers souhaités dans l'application. Le nom des fichier est le même que le nom des animations à jouer.
+Amusez vous à les tester et en ajouter si besoin!

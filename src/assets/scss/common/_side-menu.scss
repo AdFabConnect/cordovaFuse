@@ -1,0 +1,26 @@
+/*
+<nav class="menu [effect class]">
+    <h2 class="icon icon-lab">Menu</h2>
+    <ul>
+         <li><a href="#">Menu item</a></li>
+    </ul>
+</nav>
+ */
+
+$side-menu-width: 190px;
+
+.side-menu {
+    position: absolute;
+    top: $header-height;
+    visibility: hidden;
+    width: $side-menu-width;
+    height: 100%;
+    transition: all 0.5s;
+    z-index: 10; // Over overlay, header and content
+    &-right {
+        right: 0;
+    }
+    &-left {
+        left: 0;
+    }
+}

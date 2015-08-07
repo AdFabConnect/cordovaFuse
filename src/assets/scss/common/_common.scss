@@ -14,6 +14,7 @@ body {
   height: 100%;
   font-size: 14px;
   overflow: hidden;
+  color: $white;
 }
 
 .view-container {
@@ -22,6 +23,7 @@ body {
   left: 0;
   width: 100%;
   min-height: calc(100% - #{$header-height});
+  z-index: 1; // Content, under menu, header and overlays
 }
 
 

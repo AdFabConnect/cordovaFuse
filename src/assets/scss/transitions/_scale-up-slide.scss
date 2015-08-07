@@ -1,0 +1,49 @@
+$scaleUpSlideEnterAnimationDuration: .6s;
+$scaleUpSlideLeaveAnimationDuration: .7s;
+.scale-up-slide {
+    [ui-view] {
+        &.ng-leave {
+            z-index: 2;          
+        }
+    }
+    &.left {
+        [ui-view] {
+            &.ng-enter {
+                animation: scale-up $scaleUpSlideLeaveAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-left $scaleUpSlideEnterAnimationDuration ease both;
+            }
+        }
+    }
+    &.right {
+        [ui-view] {
+            &.ng-enter {
+                animation: scale-up $scaleUpSlideLeaveAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-right $scaleUpSlideEnterAnimationDuration ease both;
+            }
+        }
+    }
+    &.top {
+        [ui-view] {
+            &.ng-enter {
+                animation: scale-up $scaleUpSlideLeaveAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-top $scaleUpSlideEnterAnimationDuration ease both;
+            }
+        }
+    }
+    &.bottom {
+        [ui-view] {
+            &.ng-enter {
+                animation: scale-up $scaleUpSlideLeaveAnimationDuration ease both;
+            }
+            &.ng-leave {
+                animation: move-to-bottom $scaleUpSlideEnterAnimationDuration ease both;
+            }
+        }
+    }
+}

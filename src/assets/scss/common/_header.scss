@@ -1,0 +1,20 @@
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $header-height;
+    line-height: $header-height;
+
+    text-align: center;
+    border-bottom: 1px solid $black;
+    z-index: 8; // Over content and overlay, under menu
+    &-menu-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #424242;
+        width: $header-height;
+        height: $header-height;
+    }
+}
