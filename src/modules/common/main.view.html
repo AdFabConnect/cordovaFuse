@@ -1,0 +1,24 @@
+<div id="header">
+    <h1 id="header-title">Cordova fuse </h1>
+
+    <span id="header-menu-link" side-menu="toggle"></span>
+</div>
+
+<nav class="side-menu side-menu-right effect-slide-in">
+    <ul>
+        <li>
+            <a ui-sref="app.home">Home</a>
+        </li>
+        <li>
+            <a ui-sref="app.modules" transition="push-slide top">Modules</a>
+        </li>
+        <li>
+            <a ui-sref="app.transitions" transition="scale-up">Transitions</a>
+        </li>
+        <li>
+            <a ui-sref="app.menu" transition="push-slide top">Menu</a>
+        </li>
+    </ul>
+</nav>
+
+<div ui-view class="view-container" id="pusher"  side-menu="close"></div>

@@ -1,1 +1,16 @@
-/.project
+# GENERAL
+.DS_Store
+.project
+
+# CORDOVA
+www
+.cordova
+/platforms/
+/plugins/
+config.xml
+
+# SASS
+src/assets/.sass-cache
+
+# LOCAL
+node_modules

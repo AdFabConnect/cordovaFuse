@@ -1,0 +1,132 @@
+/* Move from / to  */
+
+@keyframes move-to-left {
+  from { }
+  to { transform: translateX(-100%); }
+}
+@keyframes move-from-left {
+  from { transform: translateX(-100%); }
+}
+@keyframes move-to-right { 
+  from { }
+  to { transform: translateX(100%); }
+}
+@keyframes move-from-right {
+  from { transform: translateX(100%); }
+}
+@keyframes move-to-top {
+  from { }
+  to { transform: translateY(-100%); }
+}
+@keyframes move-from-top {
+  from { transform: translateY(-100%); }
+}
+@keyframes move-to-bottom {
+  from { }
+  to { transform: translateY(100%); }
+}
+@keyframes move-from-bottom {
+  from { transform: translateY(100%); }
+}
+
+@keyframes scale-down {
+  from { }
+  to { opacity: 0; transform: scale(.8); }
+}
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(.8); }
+}
+@keyframes scale-up-down {
+  from { opacity: 0; transform: scale(1.2); }
+}
+@keyframes scale-down-up {
+  from { }
+  to { opacity: 0; transform: scale(1.2); }
+}
+@keyframes scale-down-center {
+  from { }
+  to { opacity: 0; transform: scale(.7); }
+}
+@keyframes scale-up-center {
+  from { opacity: 0; transform: scale(.7); }
+}
+
+
+/* push */
+
+@keyframes rotate-push-left {
+  from { }
+  to { opacity: 0; transform: rotateY(90deg); }
+}
+
+@keyframes rotate-push-right {
+  from { }
+  to { opacity: 0; transform: rotateY(-90deg); }
+}
+
+@keyframes rotate-push-top {
+  from { }
+  to { opacity: 0; transform: rotateX(-90deg); }
+}
+
+@keyframes rotate-push-bottom {
+  from { }
+  to { opacity: 0; transform: rotateX(90deg); }
+}
+
+/* pull */
+
+@keyframes rotate-pull-right {
+  from { opacity: 0; transform: rotateY(-90deg); }
+}
+
+@keyframes rotate-pull-left {
+  from { opacity: 0; transform: rotateY(90deg); }
+}
+
+@keyframes rotate-pull-top {
+  from { opacity: 0; transform: rotateX(-90deg); }
+}
+
+@keyframes rotate-pull-bottom {
+  from { opacity: 0; transform: rotateX(90deg); }
+}
+
+/*
+ * 
+$pushAnimationDuration: .5s;
+.push {
+    &.left {
+        [ui-view] {
+            &.ng-enter {
+            }
+            &.ng-leave {
+            }
+        }
+    }
+    &.right {
+        [ui-view] {
+            &.ng-enter {
+            }
+            &.ng-leave {
+            }
+        }
+    }
+    &.top {
+        [ui-view] {
+            &.ng-enter {
+            }
+            &.ng-leave {
+            }
+        }
+    }
+    &.bottom {
+        [ui-view] {
+            &.ng-enter {
+            }
+            &.ng-leave {
+            }
+        }
+    }
+}
+ */

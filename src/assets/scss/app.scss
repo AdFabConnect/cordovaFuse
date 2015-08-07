@@ -1,0 +1,16 @@
+@import 'common/reset';
+@import 'common/vars';
+@import 'common/mixins';
+@import 'common/common';
+@import 'common/header';
+@import 'common/side-menu';
+
+@import 'transitions/animations'; // The base file to play transitions
+@import 'transitions/push-fade'; // The default animation file. Remove, replace or add others to play other custom transitions
+@import 'transitions/scale-up'; // Additionnal transitions for demo
+@import 'transitions/flip'; // Additionnal transitions for demo
+@import 'transitions/push-slide';
+
+@import 'side-menu/_effect-slide-in.scss';
+
+@import 'pages/demo';

@@ -1,0 +1,67 @@
+body {
+    background: #303030;
+    color: $white;
+    font: 14px arial;
+}
+a {
+   color: inherit;
+}
+
+#header {
+    background: #1976D2;
+    font-size: 16px;
+}
+#pusher {
+    h1 {
+        margin: 20px 0;
+        text-align: center;
+    }
+    p, ul {
+        margin: $content-offset;
+    }
+    li {
+        list-style: square;
+        margin-left: 30px;
+    }
+}
+.side-menu {
+    background: #424242;
+    padding: 0 5px;
+    
+    a {
+        padding: 10px;
+        position: relative;
+        display: block;
+    }
+    li:not(:last-child) {
+        border-bottom: 1px solid $black;
+    }
+}
+.view-container {
+    background: #42A5F5;
+}
+// Adds an overlay on content when menu is open
+#pusher {
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.2);
+        transition: opacity 0.5s, width 0s 0.5s, height 0s 0.5s;
+        z-index: 5; // Over content
+    }
+}
+
+.side-menu-open {
+    #pusher:after {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        z-index: 10; // Over content
+        transition: opacity 0.5s;
+    } 
+}

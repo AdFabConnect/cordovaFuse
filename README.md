@@ -1,130 +1,86 @@
-cordovaFuse
-===========
+CordovaFuse
+=====================
 
 Let's fuse Cordova projects
 
-The goal of this project is to increase your productivity when you develop phonegap / cordova projects.
+This projects aims to increase your productivity when you develop cordova projects. We use it every day to build real life applications, and it's improved based on our experience on these projects.
 
-Some of these dev have been directly taken from the Holly Schinsky excellent article (http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/) and 
-Dan Moore (http://www.mooreds.com/) (whose THE creator of some of these scripts).
+With this, you can start a [Cordova](https://cordova.apache.org/) application based on [AngularJS](https://angularjs.org/). We also use [gulp](http://gulpjs.com/), [sass](http://sass-lang.com/), [autoprefixer](https://github.com/ai/autoprefixer) and [browserify](http://browserify.org/) to build our apps.
 
-Some of these scripts have been written by us.
-
-Furthermore, we'll update this Fuse frequently with astounding new features. 
-The next to come : Being able to update your js files dynamically from the cloud (You won't have to resubmit your app for a js bug fix !)
+Also, we already included two of the most useful cordova plugins available : [wkwebview](https://github.com/Telerik-Verified-Plugins/WKWebView) and [crosswalk](http://crosswalk-project.org/). These two will help you to have consistent graphics, to sped up the app' and have access to the latest APIs available in browsers. 
 
 Stay tuned and enjoy !
 
-##Pre-requisites
+## Quick start
 
-You need node and npm installed on your system (but we assume you have it since you're working with Cordova which has the same pre-requisite)
-Otherwise, you will need to have ImageMagick installed on your computer, [mobile-icon-resizer](https://github.com/muzzley/mobile-icon-resizer) use it to convert icon to different size
+#### Requirements
 
-## Installation
+- node : `brew install node` or [visionmedia/n](https://github.com/visionmedia/n)
+- imagemagick : `brew install imagemagick`, for Windows => [ImageMagick](http://www.imagemagick.org/script/binary-releases.php#windows) (used to generate icons and splashscreen)
 
-Don't forget to give execute rights to your hooks (chown and chmod).
+#### Instructions
 
-Open file config/settings.js and change variable appName :
+Open file package.json and change variables name and bundleId:
 ```
-var settings = {
-	appName: 'myapp',
+  name: 'myapp',
+  bundleId: 'fr.adfab.myapp',
 ```
-! appName is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
+! name is equal to the last string of app bundle id (myapp = from com.mycompany.myapp)
 
-Once installed on an existing project, configure your files in the directory "config" and uninstall (cordova plaform rm) / reinstall (cordova plaform add) the platforms 
-# Cordova Hooks
-## 1. Plugins installation
-If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in config/settings.json and 
-they will be install when you add your plaform with cordova (cordova platform add).
+```bash
+$ npm install
+$ cordova create tmp com.mycompany.myapp myapp && cp -r tmp/* ./ && rm -rf tmp
+$ gulp [ watch ]
+
+$ cordova platform add [ ios | android ]
+$ cordova build [ ios | android ]
+$ cordova [ emulate | run ] [ ios | android ]
+```
+
+#### Dependencies
+
+All project dependencies should be managed in the package.json. This file contains cordova plugins (see next chapter), build depencencies and front-end librairies and frameworks.
+
+#### Pre-commit
+
+A pre-commit hook is available during development. It'll prevent some errors and code style issues by running jshint. To install it, just do :
+
+```
+ln -s ../../hooks/pre-commit.sh .git/hooks/pre-commit
+```
+
+You can update the .jshintrc file to match your team coding style.
+
+
+## Cordova Hooks
+
+### 1. Plugins installation
+If you need to install plugins, we propose you an "after_add_platform" hook. Just fill in the array of the plugins you want to install in package.json and they will be installed when you add your plaform with cordova (cordova platform add).
 
 They will be removed when you rm your platform with cordova (cordova platform rm).
 
 Example :
 ```
-	plugins: [
-    	{"org.apache.cordova.console": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git"},
-    	{"org.apache.cordova.splashscreen": "https://github.com/apache/cordova-plugin-splashscreen.git"}
-	],
+  "plugins": [
+    "cordova-plugin-console",
+    "cordova-plugin-splashscreen",
+    "com.telerik.plugins.wkwebview",
+    "cordova-plugin-crosswalk-webview"
+  ]
 ```
 
-
-## 2. Manage your environments
-This hook is an "after_prepare" hook.
-Put a project.json file with key/value in the config directory. Put these keys in the files (under www) you want to see updated by the values.
-Each time you'll prepare your project (cordova prepare), The files will be updated depending on the env you want :
-execute with : TARGET=prod; cordova build ios (if you want the prod env to be taken)
+**Warning** : We strongly recommend to fix your plugins versions. For instance : 
+```
+  "plugins": [
+    "cordova-plugin-console@r1.0.1",
+    "cordova-plugin-splashscreen@r2.1.0",
+    "com.telerik.plugins.wkwebview",
+    "cordova-plugin-crosswalk-webview@1.2.0"
+  ]
+```
  
-## 3. Install the icons and Splash screens
+### 2. Install the icons and Splash screens
 This hook is an "after_prepare" hook.
-I've revisited the script from Dan because I wanted all the icons and splash screen to be copied from source to the platform destinations.
 
-The principle is simple : Create a config directory (root of your project) in which you'll create the platform directories and a subdirectory "icons" and another "splash".
-Once done, every time you prepare your project (cordova prepare), theses directories will be put in your platforms !
-
-on the icon-resize folder inside of the config folder, put your icon.png. then everytime the prepare command is executed, this icon (which can be as big / high quality / size as you can) will get converted to the one used in xcode and put inside of /config/ios/resources/icons folder. To change the name of the icon created using mobile-icon-resizer you have to edit this config file [icon-resize-config.js](https://github.com/AdFabConnect/cordovaFuse/blob/master/config/icon-resize/icon-resize-config.js)
-
-## 4. Install Fonts in iOS
-This hook is an "after_prepare" hook.
-This is always tedious to install new fonts in your iOS cordova project. Mika (https://github.com/mikaelh94) has written an excellent article on this subject :
-http://connect.adfab.fr/tutorial/phonegap-utiliser-des-polices-systemes (ask me if you want it to be translated).
-(Be Careful, custom fonts config has slighly changed in iOS8 since then. See the source code if you need more info.)
-
-And this hook will make everything for you : Just create a "fonts" directory in the config/'platform' directory and put .otf and .ttf fonts in there.
-Each time you'll prepare your project (cordova prepare), these fonts will be copied in your ios Resources directory and the plist file will be updated.
-
-Don't forget to use the right names (read Mika's article) in your css. That's it !
-
-There is one simple thing to do if you want to know the names of your fonts to use in your css : Just add the following code in MainViewController.m in the method viewDidLoad :
-
-```
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    for (NSString *name in [UIFont familyNames]) {
-        NSLog(@"Family name : %@", name);
-        for (NSString *font in [UIFont fontNamesForFamilyName:name]) {
-            NSLog(@"Font name : %@", font);
-        }
-    }
-}
-```
-It will display the list of the fonts available to your app with their correct name.
-
-## 5. Add custom config into xcode .plist file
-This hook is an "after_prepare" hook.
-You need to add all the custom config into config/settings.js
-
-Example :
-```
-	plist: {
-		"UISupportedInterfaceOrientations": [
-			"UIInterfaceOrientationPortrait",
-			"UIInterfaceOrientationLandscapeLeft",
-			"UIInterfaceOrientationPortraitUpsideDown",
-			"UIInterfaceOrientationLandscapeRight"
-		],
-		"UISupportedInterfaceOrientations~ipad": [
-  			"UIInterfaceOrientationPortrait",
-			"UIInterfaceOrientationLandscapeLeft",
-			"UIInterfaceOrientationPortraitUpsideDown",
-			"UIInterfaceOrientationLandscapeRight"
-		],
-		"UIStatusBarStyle": "UIStatusBarStyleLightContent",
-		"UIViewControllerBasedStatusBarAppearance": false,
-		"UIStatusBarHidden": true
-}
-```
-
-# Grunt tasks
-There is one headache you'll want to avoid when working on a Cordova project : Having to launch "Cordova build" each time you want to update your project.
-
-Just launch "grunt" (after a first npm install), and Grunt will watch each time you modify a file under www and automatically launch a "cordova build" for you !
-You can even refresh the simulator automatically !
-
-Of course, it doesn't replace the wonderful Phonegap developer app (http://devgirl.org/2014/04/22/introducing-the-phonegap-developer-app/) but it can help (hopefully).
-
-Enjoy !
-
-If you need additional tools to improve your dev process with cordova, just let us know, We'll try to help ;) (you can also send PR !)
-
+Just put a icon.png and a splash.png in your project root folder.
+This hook will generate all icons/splashs needed for ios/android.

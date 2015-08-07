@@ -1,0 +1,53 @@
+$pushPullEnterAnimationDuration: .5s;
+$pushPullEnterDelay: .18s;
+$pushPullLeaveAnimationDuration: .8s;
+.push-pull {
+    &.left {
+        [ui-view] {
+            &.ng-enter {
+                transform-origin: 100% 50%;
+                animation: rotate-pull-right $pushPullEnterAnimationDuration both ease $pushPullEnterDelay;
+            }
+            &.ng-leave {
+                transform-origin: 0% 50%;
+                animation: rotate-push-left $pushPullLeaveAnimationDuration both ease;
+            }
+        }
+    }
+    &.right {
+        [ui-view] {
+            &.ng-enter {
+                transform-origin: 0% 50%;
+                animation: rotate-pull-left $pushPullEnterAnimationDuration both ease $pushPullEnterDelay;
+            }
+            &.ng-leave {
+                transform-origin: 100% 50%;
+                animation: rotate-push-right $pushPullLeaveAnimationDuration both ease;
+            }
+        }
+    }
+    &.top {
+        [ui-view] {
+            &.ng-enter {
+                transform-origin: 50% 0%;
+                animation: rotate-pull-top $pushPullEnterAnimationDuration both ease $pushPullEnterDelay;
+            }
+            &.ng-leave {
+                transform-origin: 50% 0%;
+                animation: rotate-push-top $pushPullLeaveAnimationDuration both ease;
+            }
+        }
+    }
+    &.bottom {
+        [ui-view] {
+            &.ng-enter {
+                transform-origin: 50% 100%;
+                animation: rotate-pull-bottom $pushPullEnterAnimationDuration both ease $pushPullEnterDelay;
+            }
+            &.ng-leave {
+                transform-origin: 50% 100%;
+                animation: rotate-push-bottom $pushPullLeaveAnimationDuration both ease;
+            }
+        }
+    }
+}
