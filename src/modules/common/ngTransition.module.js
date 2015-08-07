@@ -20,14 +20,14 @@ module.exports = angular.module('ngTransition', ['ngAnimate', 'ui.router'])
 	    restrict: 'A',
 	    link: function (scope, element, attrs) {
 	    	if(!attrs.transition) {
-		    	element.on('touchstart', function (e) {
+		    	element.on('touchstart', function () {
 		    		scope.$apply(function () {
 		    			transitionProvider.setTransition(attrs.transition);
 		    		});
 		    	});
 	    	}
 	    }
-    }
+    };
 }])
 .factory('transitionProvider', function() {
 	return {
@@ -40,16 +40,12 @@ module.exports = angular.module('ngTransition', ['ngAnimate', 'ui.router'])
 			switch(this.currentDirection) {
 				case 'left':
 					return 'right';
-					break;
 				case 'right':
 					return 'left';
-					break;
 				case 'top':
 					return 'bottom';
-					break;
 				case 'bottom':
 					return 'top';
-					break;
 			}
 			return false;
 		},
@@ -75,5 +71,5 @@ module.exports = angular.module('ngTransition', ['ngAnimate', 'ui.router'])
 			bodyClassList.add(this.currentTransition);
 			bodyClassList.add(this.currentDirection);
 		}
-	}
+	};
 });

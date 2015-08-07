@@ -1,10 +1,12 @@
 'use strict';
 
-var config = require('../../config');
+var config  = require('../../package.json');
+var angular = require('angular');
 
 angular.module('myApp', [
   'ui.router',
-  'ngAnimate',
+  require('angular-ui-router'),
+  require('angular-animate'),
   require('./common/ngTransition.module.js').name,
   require('./common/sideMenu.module.js').name,
   
@@ -12,9 +14,8 @@ angular.module('myApp', [
 ])
 
 .constant('DEFAULT', {
-  'environment' : config.env,
   'version' : config.version,
-  'appName' : config.appName
+  'appName' : config.name
 })
 
 
@@ -54,8 +55,8 @@ angular.module('myApp', [
 ])
 
 .run(['$rootScope', 'sideMenuProvider',
-      function($rootScope, sideMenuProvider) {
-  	    $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams) {
+    function($rootScope, sideMenuProvider) {
+  	    $rootScope.$on('$stateChangeStart', function () {
   	    	sideMenuProvider.close();
   	    });
   	}

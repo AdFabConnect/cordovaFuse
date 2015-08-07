@@ -7,7 +7,7 @@ module.exports = angular.module('myApp.common.sideMenu', [])
 		link: function(scope, element, attrs) {
 			var $el = angular.element(element);
 			if(attrs.sideMenu === 'close') {
-				$el.on('click', function(e) {
+				$el.on('click', function() {
 					// Set correct class in enter and leave element for animate
 					scope.$apply( function() {
 						sideMenuProvider.close();
@@ -33,7 +33,7 @@ module.exports = angular.module('myApp.common.sideMenu', [])
 		if(this.sideMenuElement) {
 			this.sideMenuElement[this.isOpen ? 'addClass' : 'removeClass']('side-menu-open');
 		}
-	}
+	};
 	this.toggle = function() {
 		this.isOpen = !this.isOpen;
 		this.setMenu();
@@ -50,5 +50,5 @@ module.exports = angular.module('myApp.common.sideMenu', [])
 		setSideMenuElement: this.setSideMenuElement,
 		toggle: this.toggle,
 		close: this.close
-	}
+	};
 });
